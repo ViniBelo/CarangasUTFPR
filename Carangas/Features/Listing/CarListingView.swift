@@ -14,7 +14,9 @@ struct CarListingView: View {
     var body: some View {
         List {
             ForEach(cars) { car in
-                CarListingCell(name: car.name, brand: car.brand)
+                NavigationLink(value: NavigationType.detail(car)) { 
+                    CarListingCell(name: car.name, brand: car.brand)
+                }
             }
         }
         .navigationTitle("Carros")

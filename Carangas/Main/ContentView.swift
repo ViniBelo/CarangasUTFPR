@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum NavigationType {
-    case detail
-    case form
+enum NavigationType: Hashable {
+    case detail(Car)
+    case form(Car)
 }
 
 struct ContentView: View {
@@ -20,8 +20,10 @@ struct ContentView: View {
             CarListingView()
                 .navigationDestination(for: NavigationType.self) { navigationType in
                     switch navigationType {
-                    case NavigationType.detail: CarDetailView()
-                    case NavigationType.form: CarFormView()
+                    case .detail(let car):
+                        CarDetailView(car: car)
+                    case .form(let car):
+                        CarFormView()
                     }
                 }
         }

@@ -41,3 +41,15 @@ class Car: Codable, Identifiable {
         self.price = price
     }
 }
+
+extension Car: Equatable {
+    static func == (lhs: Car, rhs: Car) -> Bool {
+        lhs._id == rhs._id
+    }
+}
+
+extension Car: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(_id)
+    }
+}
